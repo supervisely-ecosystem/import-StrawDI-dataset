@@ -51,7 +51,9 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
 
     strawberry_data_path = os.path.join(g.work_dir_path, sly.io.fs.get_file_name(g.arch_name))
 
-    # dataset = os.environ["modal.state.currDataset"]
+    dataset = os.environ["modal.state.currDataset"]
+
+    app_logger.warn('dataset!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:', dataset)
 
     datasets = ['Val', 'Test'] # TODO for debug
 
