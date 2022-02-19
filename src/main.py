@@ -21,6 +21,15 @@ def create_ann(ann_path):
     return sly.Annotation(img_size=(ann_np.shape[0], ann_np.shape[1]), labels=labels)
 
 
+def extract_zip():
+    if zipfile.is_zipfile(g.archive_path):
+        with zipfile.ZipFile(g.archive_path, 'r') as archive:
+            archive.extractall(g.work_dir_path)
+    else:
+        g.logger.warn('Archive cannot be unpacked {}'.format(g.arch_name))
+        g.my_app.stop()
+
+
 @g.my_app.callback("import_strawberry")
 @sly.timeit
 def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
@@ -39,26 +48,21 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
     # sizeb = int(response.headers.get('content-length', 0))
     # progress_cb = get_progress_cb(6, "Download {}".format(arch_name), sizeb, is_size=True, min_report_percent=1)
     # download(strawberry_url, archive_path, my_app.cache, progress_cb)
-    # ===============================================================================================================
-    # extract zip
-    # if zipfile.is_zipfile(g.archive_path):
-    #     with zipfile.ZipFile(g.archive_path, 'r') as archive:
-    #         archive.extractall(g.work_dir_path)
-    # else:
-    #     g.logger.warn('Archive cannot be unpacked {}'.format(g.arch_name))
-    #     g.my_app.stop()
 
     strawberry_data_path = os.path.join(g.work_dir_path, sly.io.fs.get_file_name(g.arch_name))
 
     datasets = os.environ["modal.state.currDataset"]
-
+    app_logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1', datasets)
     if len(datasets) != 2:
-        datasets = os.environ['modal.state.currDataset']
         datasets = datasets[1:-1].replace('\'', '')
         datasets = datasets.replace(' ', '').split(',')
     else:
         app_logger.warn('You have not selected a dataset to import')
         g.my_app.stop()
+
+    app_logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1', datasets)
+
+
 
     datasets = ['Val', 'Test'] # TODO for debug
 
