@@ -17,6 +17,15 @@ WORKSPACE_ID = int(os.environ['context.workspaceId'])
 
 logger = sly.logger
 
+datasets = []
+# datasets = os.environ["modal.state.currDataset"]
+# if len(datasets) != 2:
+#     datasets = datasets[1:-1].replace('\'', '')
+#     datasets = datasets.replace(' ', '').split(',')
+# else:
+#     logger.warn('You have not selected a dataset to import')
+#     my_app.stop()
+
 project_name = 'strawberry'
 work_dir = 'strawberry_data'
 strawberry_url = 'https://doc-08-04-docs.googleusercontent.com/docs/securesc/fjksl4stcffi0pt64pddibn3jn1rboko'
@@ -24,6 +33,7 @@ arch_name = 'StrawDI_Db1.zip'
 images_folder = 'img'
 anns_folder = 'label'
 obj_class_name = 'strawberry'
+batch_size = 30
 obj_class = sly.ObjClass(obj_class_name, sly.Bitmap)
 
 storage_dir = my_app.data_dir

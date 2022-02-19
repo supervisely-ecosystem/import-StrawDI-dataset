@@ -51,35 +51,22 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
 
     strawberry_data_path = os.path.join(g.work_dir_path, sly.io.fs.get_file_name(g.arch_name))
 
-    datasets = os.environ["modal.state.currDataset"]
-    app_logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1', datasets)
-    if len(datasets) != 2:
-        datasets = datasets[1:-1].replace('\'', '')
-        datasets = datasets.replace(' ', '').split(',')
-    else:
-        app_logger.warn('You have not selected a dataset to import')
-        g.my_app.stop()
-
-    app_logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1', datasets)
-
-
-
-    datasets = ['Val', 'Test'] # TODO for debug
+    g.datasets = ['Val'] # TODO for debug
 
     new_project = api.project.create(g.WORKSPACE_ID, g.project_name, change_name_if_conflict=True)
-
     obj_class_collection = sly.ObjClassCollection([g.obj_class])
     meta = sly.ProjectMeta(obj_classes=obj_class_collection)
     api.project.update_meta(new_project.id, meta.to_json())
 
-    for ds in datasets:
+    for ds in g.datasets:
         new_dataset = api.dataset.create(new_project.id, ds, change_name_if_conflict=True)
 
         curr_strawberry_ds_path = os.path.join(strawberry_data_path, ds.lower())
         curr_img_path = os.path.join(curr_strawberry_ds_path, g.images_folder)
         curr_ann_path = os.path.join(curr_strawberry_ds_path, g.anns_folder)
 
-        for img_batch in sly.batched(os.listdir(curr_img_path), batch_size=10):
+        progress = sly.Progress('Create dataset {}'.format(ds), len(os.listdir(curr_img_path)), app_logger)
+        for img_batch in sly.batched(os.listdir(curr_img_path), batch_size=g.batch_size):
 
             img_pathes = [os.path.join(curr_img_path, name) for name in img_batch]
             ann_pathes = [os.path.join(curr_ann_path, name) for name in img_batch]
@@ -89,6 +76,7 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
             img_infos = api.image.upload_paths(new_dataset.id, img_batch, img_pathes)
             img_ids = [im_info.id for im_info in img_infos]
             api.annotation.upload_anns(img_ids, anns)
+            progress.iters_done_report(g.batch_size)
 
     g.my_app.stop()
 
