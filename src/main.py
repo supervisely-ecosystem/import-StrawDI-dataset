@@ -50,10 +50,12 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
 
     strawberry_data_path = os.path.join(g.work_dir_path, sly.io.fs.get_file_name(g.arch_name))
 
-    dataset = os.environ["modal.state.currDataset"]
+    datasets = os.environ["modal.state.currDataset"]
+    if len(datasets) == 0:
+        app_logger.warn('No dataset selected, app will be stop')
+        g.my_app.stop()
 
-    app_logger.warn('dataset!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:', dataset)
-
+    app_logger.warn('dataset!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:', datasets) # TODO for debug
     datasets = ['Val', 'Test'] # TODO for debug
 
     new_project = api.project.create(g.WORKSPACE_ID, g.project_name, change_name_if_conflict=True)
