@@ -55,6 +55,9 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
         app_logger.warn('No dataset selected, app will be stop')
         g.my_app.stop()
 
+    for ds in datasets:
+        app_logger.warn('curr_ds!!!!!!!!:', ds)
+
     app_logger.warn('dataset!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:', datasets) # TODO for debug
     datasets = ['Val', 'Test'] # TODO for debug
 
