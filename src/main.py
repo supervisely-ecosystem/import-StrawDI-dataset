@@ -2,7 +2,6 @@
 import zipfile, os
 import supervisely as sly
 import sly_globals as g
-import init_ui
 from functools import partial
 from supervisely.io.fs import download
 import numpy as np
