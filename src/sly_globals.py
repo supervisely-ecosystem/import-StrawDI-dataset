@@ -1,5 +1,5 @@
 
-import os, sys, requests
+import os, sys
 from pathlib import Path
 import supervisely as sly
 
