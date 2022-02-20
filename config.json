@@ -1,10 +1,10 @@
 {
-  "name": "Import strawberry",
+  "name": "Import StrawDI dataset",
   "type": "app",
   "categories": [
     "Images"
   ],
-  "description": "Import strawberry dataset",
+  "description": "Import StrawDI(strawberry) dataset",
   "docker_image": "supervisely/base-py-sdk:6",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
