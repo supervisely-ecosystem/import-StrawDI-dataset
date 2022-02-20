@@ -50,7 +50,9 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
         curr_ann_path = os.path.join(curr_strawberry_ds_path, g.anns_folder)
 
         curr_img_cnt = g.sample_img_count[ds]
+        app_logger.warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", curr_img_cnt)
         sample_img_path = random.sample(os.listdir(curr_img_path), curr_img_cnt)
+        app_logger.warn("+++++++++++++++++++++++++++++++++++++++", len(sample_img_path))
 
         progress = sly.Progress('Create dataset {}'.format(ds), curr_img_cnt, app_logger)
         for img_batch in sly.batched(sample_img_path, batch_size=g.batch_size):
