@@ -39,12 +39,8 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
 
     strawberry_data_path = os.path.join(g.work_dir_path, sly.io.fs.get_file_name(g.arch_name))
 
-    # g.datasets = ['Val'] # TODO for debug
-
     new_project = api.project.create(g.WORKSPACE_ID, g.project_name, change_name_if_conflict=True)
-    obj_class_collection = sly.ObjClassCollection([g.obj_class])
-    meta = sly.ProjectMeta(obj_classes=obj_class_collection)
-    api.project.update_meta(new_project.id, meta.to_json())
+    api.project.update_meta(new_project.id, g.meta.to_json())
 
     for ds in g.datasets:
         new_dataset = api.dataset.create(new_project.id, ds, change_name_if_conflict=True)

@@ -17,7 +17,6 @@ WORKSPACE_ID = int(os.environ['context.workspaceId'])
 
 logger = sly.logger
 
-#datasets = []
 datasets = os.environ["modal.state.currDataset"]
 if len(datasets) != 2:
     datasets = datasets[1:-1].replace('\'', '')
@@ -35,6 +34,8 @@ anns_folder = 'label'
 obj_class_name = 'strawberry'
 batch_size = 30
 obj_class = sly.ObjClass(obj_class_name, sly.Bitmap)
+obj_class_collection = sly.ObjClassCollection([obj_class])
+meta = sly.ProjectMeta(obj_classes=obj_class_collection)
 
 storage_dir = my_app.data_dir
 work_dir_path = os.path.join(storage_dir, work_dir)
