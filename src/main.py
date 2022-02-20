@@ -1,10 +1,10 @@
 
-import zipfile, os, requests
+import zipfile, os
 import supervisely as sly
 import sly_globals as g
-from functools import partial
 from supervisely.io.fs import download
 import numpy as np
+import gdown
 
 
 def create_ann(ann_path):
@@ -34,24 +34,12 @@ def extract_zip():
 @sly.timeit
 def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
 
-    # def update_progress(count, index, api: sly.Api, task_id, progress: sly.Progress):
-    #     progress.iters_done(count)
-    #
-    #
-    # def get_progress_cb(index, message, total, is_size=False, min_report_percent=5, upd_func=update_progress):
-    #     progress = sly.Progress(message, total, is_size=is_size, min_report_percent=min_report_percent)
-    #     progress_cb = partial(upd_func, index=index, api=api, task_id=TASK_ID, progress=progress)
-    #     progress_cb(0)
-    #     return progress_cb
-    #
-    # response = requests.head(strawberry_url, allow_redirects=True)
-    # sizeb = int(response.headers.get('content-length', 0))
-    # progress_cb = get_progress_cb(6, "Download {}".format(arch_name), sizeb, is_size=True, min_report_percent=1)
-    # download(strawberry_url, archive_path, my_app.cache, progress_cb)
+    gdown.download(g.strawberry_url, g.archive_path, quiet=False)
+    extract_zip()
 
     strawberry_data_path = os.path.join(g.work_dir_path, sly.io.fs.get_file_name(g.arch_name))
 
-    g.datasets = ['Val'] # TODO for debug
+    # g.datasets = ['Val'] # TODO for debug
 
     new_project = api.project.create(g.WORKSPACE_ID, g.project_name, change_name_if_conflict=True)
     obj_class_collection = sly.ObjClassCollection([g.obj_class])
