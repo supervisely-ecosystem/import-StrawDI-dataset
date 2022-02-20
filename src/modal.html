@@ -1,19 +1,44 @@
 <div>
       <sly-card
             class="mt15"
-            title="Choose datasets to import:"
+            title="Choose datasets and sample percents:"
     >
-            <sly-field title="Dataset:" style="margin: 10px 10px 0 0;">
             <el-checkbox-group v-model="state.currDataset" >
+          <sly-card>
                 <div>
-                <el-checkbox label="Train" style="margin: 5px 10px 0 0"></el-checkbox>
+                <el-checkbox label="Train" style="margin: 0px 10px 10px 0"></el-checkbox>
                 </div>
+                <div>{{ 28 * state.samplePercentTrain }} images will be import</div>
+
                 <div>
-                <el-checkbox label="Val" style="margin: 5px 10px 0 0"></el-checkbox>
+                  <sly-field title="Set sample (%) for train dataset" style="margin: 15px 10px 0 0">
+                  <el-slider v-model="state.samplePercentTrain" :min="1" :max="100" show-input></el-slider>
+                    </sly-field>
                 </div>
-                <el-checkbox label="Test" style="margin: 5px 10px 0 0"></el-checkbox>
+          </sly-card>
+          <sly-card>
+                <div>
+                <el-checkbox label="Val" style="margin: 5px 10px 10px 0"></el-checkbox>
+                </div>
+
+                <div>{{ 1 * state.samplePercentVal }} images will be import</div>
+
+                <div>
+                  <sly-field title="Set sample (%) for val dataset" style="margin: 15px 10px 0 0">
+                  <el-slider v-model="state.samplePercentVal" :min="1" :max="100" show-input></el-slider>
+                    </sly-field>
+                </div>
+          </sly-card>
+          <sly-card>
+                <el-checkbox label="Test" style="margin: 5px 10px 10px 0"></el-checkbox>
+                <div>{{ 2 * state.samplePercentTest }} images will be import</div>
+                <div>
+                  <sly-field title="Set sample (%) for test dataset" style="margin: 15px 10px 0 0">
+                  <el-slider v-model="state.samplePercentTest" :min="1" :max="100" show-input></el-slider>
+                    </sly-field>
+                </div>
+          </sly-card>
             </el-checkbox-group>
-            </sly-field>
 
       </sly-card>
 
