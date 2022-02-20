@@ -29,7 +29,7 @@ train_percent = os.environ["modal.state.samplePercentTrain"]
 val_percent = os.environ["modal.state.samplePercentVal"]
 test_percent = os.environ["modal.state.samplePercentTest"]
 
-sample_img_count = {'train': 28 * train_percent, 'val': val_percent, 'test': 2 * test_percent}
+sample_img_count = {'Train': 28 * train_percent, 'Val': val_percent, 'Test': 2 * test_percent}
 
 
 project_name = 'strawberry'
