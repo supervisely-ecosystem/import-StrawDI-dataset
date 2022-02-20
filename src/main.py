@@ -1,5 +1,5 @@
 
-import zipfile, os
+import zipfile, os, random
 import supervisely as sly
 import sly_globals as g
 from supervisely.io.fs import download
@@ -49,8 +49,11 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
         curr_img_path = os.path.join(curr_strawberry_ds_path, g.images_folder)
         curr_ann_path = os.path.join(curr_strawberry_ds_path, g.anns_folder)
 
-        progress = sly.Progress('Create dataset {}'.format(ds), len(os.listdir(curr_img_path)), app_logger)
-        for img_batch in sly.batched(os.listdir(curr_img_path), batch_size=g.batch_size):
+        curr_img_cnt = g.sample_img_count[ds]
+        sample_img_path = random.sample(os.listdir(curr_img_path), curr_img_cnt)
+
+        progress = sly.Progress('Create dataset {}'.format(ds), curr_img_cnt, app_logger)
+        for img_batch in sly.batched(sample_img_path, batch_size=g.batch_size):
 
             img_pathes = [os.path.join(curr_img_path, name) for name in img_batch]
             ann_pathes = [os.path.join(curr_ann_path, name) for name in img_batch]

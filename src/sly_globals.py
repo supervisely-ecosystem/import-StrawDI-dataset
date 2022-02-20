@@ -25,6 +25,13 @@ else:
     logger.warn('You have not selected a dataset to import')
     my_app.stop()
 
+train_percent = os.environ["modal.state.samplePercentTrain"]
+val_percent = os.environ["modal.state.samplePercentVal"]
+test_percent = os.environ["modal.state.samplePercentTest"]
+
+sample_img_count = {'train': 28 * train_percent, 'val': val_percent, 'test': 2 * test_percent}
+
+
 project_name = 'strawberry'
 work_dir = 'strawberry_data'
 strawberry_url = 'https://docs.google.com/uc?id=1elFB-q9dgPbfnleA7qIrTb96Qsli8PZl'
