@@ -25,9 +25,9 @@ else:
     logger.warn('You have not selected a dataset to import')
     my_app.stop()
 
-train_percent = os.environ["modal.state.samplePercentTrain"]
-val_percent = os.environ["modal.state.samplePercentVal"]
-test_percent = os.environ["modal.state.samplePercentTest"]
+train_percent = int(os.environ["modal.state.samplePercentTrain"])
+val_percent = int(os.environ["modal.state.samplePercentVal"])
+test_percent = int(os.environ["modal.state.samplePercentTest"])
 
 sample_img_count = {'Train': 28 * train_percent, 'Val': val_percent, 'Test': 2 * test_percent}
 
