@@ -21,15 +21,13 @@ train_ds = os.environ["modal.state.train"]
 val_ds = os.environ["modal.state.val"]
 test_ds = os.environ["modal.state.test"]
 
-logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', train_ds)
-logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', val_ds)
-logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', test_ds)
+datasets = []
 
-datasets = os.environ["modal.state.currDataset"]
-if len(datasets) != 2:
-    datasets = datasets[1:-1].replace('\'', '')
-    datasets = datasets.replace(' ', '').split(',')
-else:
+for ds in [train_ds, val_ds, test_ds]:
+    if len(ds) != 2:
+        datasets.append(ds[1:-1].replace('\'', ''))
+
+if len(datasets) == 0:
     logger.warn('You have not selected a dataset to import')
     my_app.stop()
 
