@@ -63,7 +63,7 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
             img_infos = api.image.upload_paths(new_dataset.id, img_batch, img_pathes)
             img_ids = [im_info.id for im_info in img_infos]
             api.annotation.upload_anns(img_ids, anns)
-            progress.iters_done_report(g.batch_size)
+            progress.iters_done_report(len(img_batch))
 
     g.my_app.stop()
 
