@@ -17,6 +17,14 @@ WORKSPACE_ID = int(os.environ['context.workspaceId'])
 
 logger = sly.logger
 
+train_ds = os.environ["modal.state.train"]
+val_ds = os.environ["modal.state.val"]
+test_ds = os.environ["modal.state.test"]
+
+logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', train_ds)
+logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', val_ds)
+logger.warn('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', test_ds)
+
 datasets = os.environ["modal.state.currDataset"]
 if len(datasets) != 2:
     datasets = datasets[1:-1].replace('\'', '')
