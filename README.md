@@ -26,7 +26,9 @@
  `Import StrawDI dataset` is an project with annotated strawberries, containing 3100 images in `Train`, `Val` and `Test` datasets. 
 
 ```markdown
-| https://i.imgur.com/XO3oCPN.png | https://i.imgur.com/oJijhly.png |
+Image URL  |  `01_prediction_url.jpg`
+:-------------------------:|:-----------------------------------:
+<img src="https://i.imgur.com/XO3oCPN.png" style="max-height: 300px; width: auto;"/>  |  <img src="https://i.imgur.com/oJijhly.png" style="max-height: 300px; width: auto;"/>
 ```
 
 ## Description 
