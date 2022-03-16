@@ -5,6 +5,7 @@
 
 <p align="center">
   <a href="#overview">Overview</a> •
+   <a href="#database rights">Database rights</a> •
   <a href="#license">License</a> •
   <a href="#acknowledgement">Acknowledgement</a> •
   <a href="#statistics">Statistics</a> •
@@ -28,6 +29,10 @@ The capture device used was a Samsung Galaxy S7 Edge smartphone attached to an e
 To reduce the computational demands on the models, the images have been rescaled to 1008 x 756 and stored in `PNG` format. Project is divided into train (2800 images), validation (100 images) and test (200 images) subsets.
 
 <img src="https://i.imgur.com/J5MQcfW.png" style="width: 300px;"/>
+
+## Database rights 
+
+The dataset data includes images and annotations obtained from the [StrawDI](https://strawdi.github.io/) website. 
 
 ## [License](https://strawdi.github.io/)
 

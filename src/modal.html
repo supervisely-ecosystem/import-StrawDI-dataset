@@ -1,17 +1,15 @@
 <div>
-      <sly-card
-            class="mt15"
-            title="Choose datasets and sample percents:"
-    >
           <sly-card>
                 <div>
                 <el-checkbox v-model="state.train" label="Train" style="margin: 0px 10px 10px 0"></el-checkbox>
                 </div>
 
-                <div v-if="(state.train).length === 1">{{ 28 * state.samplePercentTrain }} images will be import</div>
+                <div v-if="(state.train).length === 1">{{ 28 * state.samplePercentTrain }} images will be imported</div>
+
+                <div style="margin: 15px 10px 0 0">Sample (%) </div>
 
                 <div v-if="(state.train).length === 1">
-                  <sly-field title="Set sample (%) for train dataset" style="margin: 15px 10px 0 0">
+                  <sly-field title="" style="margin: 5px 10px 0 0">
                   <el-slider v-model="state.samplePercentTrain" :min="1" :max="100" show-input></el-slider>
                     </sly-field>
                 </div>
@@ -21,10 +19,10 @@
                 <el-checkbox v-model="state.val" label="Val" style="margin: 5px 10px 10px 0"></el-checkbox>
                 </div>
 
-                <div v-if="(state.val).length === 1">{{ 1 * state.samplePercentVal }} images will be import</div>
-
+                <div v-if="(state.val).length === 1">{{ 1 * state.samplePercentVal }} images will be imported</div>
+                <div style="margin: 15px 10px 0 0">Sample (%) </div>
                 <div v-if="(state.val).length === 1">
-                  <sly-field title="Set sample (%) for val dataset" style="margin: 15px 10px 0 0">
+                  <sly-field title="" style="margin: 5px 10px 0 0">
                   <el-slider v-model="state.samplePercentVal" :min="1" :max="100" show-input></el-slider>
                     </sly-field>
                 </div>
@@ -32,15 +30,13 @@
           <sly-card>
                 <el-checkbox v-model="state.test" label="Test" style="margin: 5px 10px 10px 0"></el-checkbox>
 
-                <div v-if="(state.test).length === 1">{{ 2 * state.samplePercentTest }} images will be import</div>
-
+                <div v-if="(state.test).length === 1">{{ 2 * state.samplePercentTest }} images will be imported</div>
+                <div style="margin: 15px 10px 0 0">Sample (%) </div>
                 <div  v-if="(state.test).length === 1">
-                  <sly-field title="Set sample (%) for test dataset" style="margin: 15px 10px 0 0">
+                  <sly-field title="" style="margin: 5px 10px 0 0">
                   <el-slider v-model="state.samplePercentTest" :min="1" :max="100" show-input></el-slider>
                     </sly-field>
                 </div>
           </sly-card>
-
-      </sly-card>
 
 </div>
