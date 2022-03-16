@@ -27,7 +27,7 @@ The capture device used was a Samsung Galaxy S7 Edge smartphone attached to an e
 
 To reduce the computational demands on the models, the images have been rescaled to 1008 x 756 and stored in `PNG` format. Project is divided into train (2800 images), validation (100 images) and test (200 images) subsets.
 
-<img src="https://i.imgur.com/J5MQcfW.png" style="max-height: 200px;"/>
+<img src="https://i.imgur.com/J5MQcfW.png" style="max-height: 200px; width: auto;"/>
 
 ## [License](https://strawdi.github.io/)
 
@@ -63,7 +63,7 @@ author = "Isaac Pérez-Borrero and Diego Marín-Santos and Manuel E. Gegúndez-A
 }
 ```
 
-To inform us of a publication using StrawDI_Db1, or to give any other feedback, please contact [Isaac Pérez](mailto:isaac.perez@dci.uhu.es) or [Diego Marin](mailto:diego.marin@diesia.uhu.es).
+To inform authors of a publication using StrawDI_Db1, or to give any other feedback, please contact [Isaac Pérez](mailto:isaac.perez@dci.uhu.es) or [Diego Marin](mailto:diego.marin@diesia.uhu.es).
 
 ## Statistics
 
