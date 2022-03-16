@@ -1,15 +1,12 @@
 <div align="center" markdown> 
-<img src="https://i.imgur.com/UdBujFN.png" width="250"/> <br>
-
-<img src="https://i.imgur.com/l3ePYu3.png" width="100"/> 
+<img src="https://i.imgur.com/UdBujFN.png" width="250"/> <br> 
 
 # Import StrawDI dataset
 
 <p align="center">
   <a href="#overview">Overview</a> •
-  <a href="#description">Description</a> •
-  <a href="#download">Download</a> •
   <a href="#license">License</a> •
+  <a href="#acknowledgement">Acknowledgement</a> •
   <a href="#statistics">Statistics</a> •
   <a href="#examples">Examples</a> •
 </p>
@@ -20,18 +17,9 @@
 [![downloads](https://app.supervise.ly/public/api/v3/ecosystem.counters?repo=supervisely-ecosystem/import-StrawDI-dataset&counter=downloads&label=downloads)](https://supervise.ly)
 </div>
 
-
-
 ## Overview 
 
- `Import Strawberry Digital Images Dataset(StrawDI) dataset` is an application with annotated strawberries.
-
-| <img src="https://i.imgur.com/XO3oCPN.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/fsp144B.png" style="max-height: 600px; width: auto;"/> |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://i.imgur.com/2VioE0h.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/Th7GRqK.png" style="max-height: 600px; width: auto;"/> |
-| <img src="https://i.imgur.com/k7G4YQN.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/tTG40mK.png" style="max-height: 600px; width: auto;"/> |
-
-## Description 
+App downloads data from official [StrawDI](https://strawdi.github.io/). After extraction data is converted to [Supervisely](https://app.supervise.ly) format.  
 
 `Import StrawDI dataset` contains 3100 images of strawberries, taken from 20 plantations, within an approximate area of 150 hectares, in the province of Huelva, Spain. The plantations were not changed in any way for the experiment and the images were taken from real production conditions during a full picking campaign.
 
@@ -39,26 +27,53 @@ The capture device used was a Samsung Galaxy S7 Edge smartphone attached to an e
 
 To reduce the computational demands on the models, the images have been rescaled to 1008 x 756 and stored in `PNG` format. Project is divided into train (2800 images), validation (100 images) and test (200 images) subsets.
 
-`Parent site`: [StrawDI](https://strawdi.github.io/).
+<img src="https://i.imgur.com/J5MQcfW.png" style="max-height: 200px;"/>
 
-<img src="https://i.imgur.com/J5MQcfW.png" style="max-height: 300px;"/>
+## [License](https://strawdi.github.io/)
 
-## License
+This dataset is made freely available to academic and non-academic entities for non-commercial purposes such as academic research, teaching, scientific publications, or personal experimentation. Permission is granted to use the data given that you agree:
 
-This dataset is made freely available to academic and non-academic entities for non-commercial purposes such as academic research, teaching, scientific publications, or personal experimentation.
+1. That the dataset comes “AS IS”, without express or implied warranty. Although every effort has been made to ensure accuracy, we (Isaac Perez-Borrero, Diego Marin, Manuel E. Gegundez-Arias and Estefanía Cortés-Ancos) do not accept any responsibility for errors or omissions.
+2. That you include a reference to the StrawDI_Db1 Dataset in any work that makes use of the dataset. For research papers, cite our preferred publication as listed on [Using the database](https://strawdi.github.io/#using-the-database) Section.
+3. That you do not distribute this dataset or modified versions. It is permissible to distribute derivative works in as far as they are abstract representations of this dataset (such as models trained on it or additional annotations that do not directly include any of our data) and do not allow to recover the dataset or something similar in character.
+4. That you may not use the dataset or any derivative work for commercial purposes as, for example, licensing or selling the data, or using the data with a purpose to procure a commercial gain.
+5. That all rights not expressly granted to you are reserved by us (Isaac Perez-Borrero, Diego Marin, Manuel E. Gegundez-Arias and Estefanía Cortés-Ancos).
 
-## Download
+## Acknowledgement
 
-Direct download dataset data: [StrawDI_Db1](https://drive.google.com/file/d/1elFB-q9dgPbfnleA7qIrTb96Qsli8PZl/view) (4.4 Gb).
+Please include the following acknowledgment…
+
+```
+Kindly provided by the StrawDI Team (see https://strawdi.github.io/).
+```
+
+…as well as a reference to the following paper:
+
+```
+@article{PEREZBORRERO2020105736,
+title = "A fast and accurate deep learning method for strawberry instance segmentation",
+journal = "Computers and Electronics in Agriculture",
+volume = "178",
+pages = "105736",
+year = "2020",
+issn = "0168-1699",
+doi = "https://doi.org/10.1016/j.compag.2020.105736",
+url = "http://www.sciencedirect.com/science/article/pii/S0168169920300624",
+author = "Isaac Pérez-Borrero and Diego Marín-Santos and Manuel E. Gegúndez-Arias and Estefanía Cortés-Ancos"
+}
+```
+
+To inform us of a publication using StrawDI_Db1, or to give any other feedback, please contact [Isaac Pérez](mailto:isaac.perez@dci.uhu.es) or [Diego Marin](mailto:diego.marin@diesia.uhu.es).
 
 ## Statistics
 
-Project contains 3 datasets with 3100 images in it, with a total of 1031 annotated objects. 
+Project contains 3 datasets with 3100 images in it, with a total of 17938 annotated objects. 
 
-![](https://i.imgur.com/qDlGVVF.png)
+![](https://i.imgur.com/qcZmgkF.png)
 
 ## Examples
 
-![](https://i.imgur.com/kaQRk35.png)
+| <img src="https://i.imgur.com/kaQRk35.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/fsp144B.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/i9bUvm1.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/dHWCUiV.png" style="max-height: 600px; width: auto;"/> |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <img src="https://i.imgur.com/os0pm2K.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/xxOko2U.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/wwQCw8D.png" style="max-height: 600px; width: auto;"/> | <img src="https://i.imgur.com/OdXzkHW.png" style="max-height: 600px; width: auto;"/> |
 
-![](https://i.imgur.com/i9bUvm1.png)
