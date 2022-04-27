@@ -50,20 +50,23 @@ def import_strawberry(api: sly.Api, task_id, context, state, app_logger):
         curr_ann_path = os.path.join(curr_strawberry_ds_path, g.anns_folder)
 
         curr_img_cnt = g.sample_img_count[ds]
-        sample_img_path = random.sample(os.listdir(curr_img_path), curr_img_cnt)
+        
+        image_names_list = random.sample(os.listdir(curr_img_path), curr_img_cnt)
+        image_names_list = [current_image_name.replace('/', '_') for current_image_name in image_names_list]
 
         progress = sly.Progress('Create dataset {}'.format(ds), curr_img_cnt, app_logger)
-        for img_batch in sly.batched(sample_img_path, batch_size=g.batch_size):
+        for img_names_batch in sly.batched(image_names_list, batch_size=g.batch_size):
 
-            img_pathes = [os.path.join(curr_img_path, name) for name in img_batch]
-            ann_pathes = [os.path.join(curr_ann_path, name) for name in img_batch]
+            img_pathes = [os.path.join(curr_img_path, name) for name in img_names_batch]
+            ann_pathes = [os.path.join(curr_ann_path, name) for name in img_names_batch]
 
             anns = [create_ann(ann_path) for ann_path in ann_pathes]
 
-            img_infos = api.image.upload_paths(new_dataset.id, img_batch, img_pathes)
+            img_infos = api.image.upload_paths(new_dataset.id, img_names_batch, img_pathes)
             img_ids = [im_info.id for im_info in img_infos]
+            
             api.annotation.upload_anns(img_ids, anns)
-            progress.iters_done_report(len(img_batch))
+            progress.iters_done_report(len(img_names_batch))
 
     g.my_app.stop()
 
